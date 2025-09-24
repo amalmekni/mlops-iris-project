@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iris-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iris-api
+  template:
+    metadata:
+      labels:
+        app: iris-api
+    spec:
+      containers:
+      - name: iris-api
+        image: ghcr.io/amalmekni/mlops-iris-project:latest
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: iris-api
+spec:
+  type: ClusterIP
+  selector:
+    app: iris-api
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
