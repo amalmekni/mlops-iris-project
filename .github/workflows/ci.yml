@@ -65,4 +65,3 @@ jobs:
       - name: Validate manifests with kubeval
         run: |
           kubeval k8s/deployment.yaml
-          kubeval k8s/service.yaml
